@@ -1,5 +1,7 @@
-#ifndef VFS_H
-#define VFS_H
+#ifndef SKYFS_H
+#define SKYFS_H
+
+#include "./../stdlib/stdint.h"
 
 /*
  *  THIS struct IS FOR CREATING FILE NODES. THIS FILESYSTEM WORKS IN A WAY WHERE THE FILE NODE CONTAINS THE NAME OF THE FILE, THE TYPE OF
@@ -7,12 +9,12 @@
  *  THE SIZE OF THE FILE'S CONTENTS, SO THE KERNEL KNOWS WHEN THE FILE'S CONTENTS END IN THE STORAGE MEMORY, AND LATER ON I MIGHT ADD ANOTHER
  *  VARIABLE TELLING US WHAT STORAGE DEVICE THE FILE'S CONTENTS ARE STORED IN.
  */
-typedef struct vfs_node
+typedef struct skyfs_node
 {
     char name[128];
     uint8_t flags;
     uint32_t pfcsm;
     size_t size;
-} vfs_node_t;
+} skyfs_node_t;
 
 #endif
