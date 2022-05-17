@@ -6,6 +6,6 @@
  *      graphics environment.
  *
  *  OPTIONS:
- *      * IO_MODE_VGA_TEXT_MODE ........ Use VGA text mode for terminal
+ *      * VGA_TEXT_MODE ........ Use VGA text mode for terminal
  */
-#define IO_MODE_VGA_TEXT_MODE // IO_MODE
+#define VGA_TEXT_MODE // IO_MODE
