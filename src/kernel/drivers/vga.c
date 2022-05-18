@@ -45,9 +45,31 @@ void vga_text_mode_putchar(char c) {
 	}
 }
 
+void vga_text_mode_print_int(int num)
+{
+	char str_num[digit_count(num)+1];
+	_itoa(num, str_num);
+	vga_text_mode_writestring(str_num);
+}
+
+void vga_text_mode_next_line()
+{
+	vga_text_mode_row = 0;
+	vga_text_mode_column++;
+}
+
 void vga_text_mode_write(const char* data, size_t size) {
 	for (size_t i = 0; i < size; i++)
-		vga_text_mode_putchar(data[i]);
+	{
+		if(data[i] == '\n')
+		{
+			vga_text_mode_next_line();
+		}
+		else
+		{
+			vga_text_mode_putchar(data[i]);
+		}
+	}
 }
 
 void vga_text_mode_writestring(const char* data) {

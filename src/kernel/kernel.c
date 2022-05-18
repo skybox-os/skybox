@@ -14,9 +14,22 @@
 #include "./modules/io.h"
 #include "./drivers/keyboard.h"
 #include "./utils/ascii.h"
+#include "./modules/time.h"
+#include "./stdlib/stdint.h"
+
+/*
+ *  IMPORTANT TIPS FOR SKYBOX DEVELOPMENT!
+ *
+ *  WHEN USING SERIAL MODE (DEFAULT I/O MODE), **PLEASE** USE \r\n TO MAKE
+ *  NEW LINES, BECAUSE OTHERWISE SOME OTHER ISSUES MAY HAPPEN.
+ *
+ *  ALSO TAKE NOTE THAT x86 PROCESSORS ARE LITTLE-ENDIAN.
+ */
 
 void kernel_entry()
 {
     init_term();
-    printf("SkyBox, a state-of-the-art operating system designed by Matthew Majfud-Wilinski. Created in May 16th, 2022.\n\n");
+    printf("\r\nSkybox (C) 2022, created by Matthew Majfud-Wilinski.\r\nSkybox is a state-of-the-art operating system designed for simplicity, while being able to do advanced things.\r\n");
+    uint32_t a = bytes_to_uint32(0b00000000, 0b00000000, 0b00000100, 0b11000001);
+    printn(a);
 }

@@ -7,5 +7,6 @@
  *
  *  OPTIONS:
  *      * VGA_TEXT_MODE ........ Use VGA text mode for terminal
+ *      * SERIAL_TERMINAL ...... Use serial as a terminal
  */
-#define VGA_TEXT_MODE // IO_MODE
+#define SERIAL_TERMINAL // IO_MODE

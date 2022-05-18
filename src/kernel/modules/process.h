@@ -6,4 +6,6 @@
 typedef uint32_t process_id_t;
 typedef uint32_t process_exit_code_t;
 
+process_id_t register_new_process();
+
 #endif
