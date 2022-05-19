@@ -30,6 +30,5 @@ void kernel_entry()
 {
     init_term();
     printf("\r\nSkybox (C) 2022, created by Matthew Majfud-Wilinski.\r\nSkybox is a state-of-the-art operating system designed for simplicity, while being able to do advanced things.\r\n");
-    uint32_t a = bytes_to_uint32(0b00000000, 0b00000000, 0b00000100, 0b11000001);
-    printn(a);
+    char* a = {'S', 'E', 'F', 0b00000000, 0b00000000, 0b00000000, 0b11111111, 0xFE, 0xFF};
 }

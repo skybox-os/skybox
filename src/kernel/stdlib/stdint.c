@@ -35,10 +35,18 @@ uint32_t digit_count(int num)
     return count;
 }
 
-uint32_t bytes_to_uint32(unsigned char a, unsigned char b, unsigned char c, unsigned char d)
+uint32_t bytes_to_uint32_lil_endian(unsigned char a, unsigned char b, unsigned char c, unsigned char d)
 {
-    uint8_t byte_array[4] = {a, b, c, d};
-    uint32_t output = 0;
-    memcpy(output, byte_array, 4);
-    return output;
+    uint8_t v4[4] = {a, b, c, d};
+    uint32_t *allOfIt;
+    allOfIt = (uint32_t*)v4;
+    return *allOfIt;
+}
+
+uint32_t bytes_to_uint32_big_endian(unsigned char a, unsigned char b, unsigned char c, unsigned char d)
+{
+    uint8_t v4[4] = {d, c, b, a};
+    uint32_t *allOfIt;
+    allOfIt = (uint32_t*)v4;
+    return *allOfIt;
 }
