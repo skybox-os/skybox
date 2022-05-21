@@ -4,9 +4,15 @@
 #include "./process.h"
 #include "./io.h"
 
-bool check_skyef(char* CONTENTS)
+/*
+ *  THE FULL DOCUMENTATION OF THE INSTRUCTIONS AND WHAT
+ *  THEY DO ARE LOCATED IN THE /doc/ FOLDER IN THIS
+ *  CODE REPOSITORY.
+ */
+
+bool check_skyef(unsigned char CONTENTS[])
 {
-    if(CONTENTS[0] == 'S' && CONTENTS[1] == 'E' && CONTENTS[2] == 'F')
+    if(CONTENTS[0] == 0x53 && CONTENTS[1] == 0x45 && CONTENTS[2] == 0x46)
     {
         return true;
     }
@@ -16,14 +22,23 @@ bool check_skyef(char* CONTENTS)
     }
 }
 
-process_exit_code_t execute_skyef(char* CONTENTS, process_id_t *PROCESS_ID)
+process_exit_code_t execute_skyef(unsigned char CONTENTS[]/*, process_id_t *PROCESS_ID*/)
 {
-    PROCESS_ID = register_new_process();
+    //PROCESS_ID = register_new_process();
     if(check_skyef(CONTENTS) == true)
     {
+        /*
+         *  THE VARIABLE MEMORY_WE_NEED IS TO BE USED IN THE FUTURE WHEN WE IMPLEMENT
+         *  A FUNCTION FOR ALLOCATING MEMORY. FOR NOW, WE MUST INTRODUCE SOME REGULAR
+         *  INSTRUCTIONS FOR SkyEF PROGRAMS.
+         */
         uint32_t MEMORY_WE_NEED = 0;
         MEMORY_WE_NEED = bytes_to_uint32_lil_endian(CONTENTS[3], CONTENTS[4], CONTENTS[5], CONTENTS[6]);
-        uint32_t *PROG_MEM_ADDRESS = kmalloc(MEMORY_WE_NEED);
+        /*
+         *  NOW WE NEED TO FIND A WAY TO ALLOCATE THE MEMORY BY USING THE
+         *  NUMBER OF MEMORY NEEDED WHICH IS STORED IN THE VARIABLE
+         *  CALLED MEMORY_WE_NEED.
+         */
         uint32_t BYTES_READ = 7;
         for(;;)
         {
@@ -37,9 +52,10 @@ process_exit_code_t execute_skyef(char* CONTENTS, process_id_t *PROCESS_ID)
             }
             else if(CONTENTS[BYTES_READ] == 0x01)
             {
-                BYTES_READ = BYTES_READ + 6;
+                BYTES_READ = BYTES_READ + 5;
                 uint32_t full_number = bytes_to_uint32_lil_endian(CONTENTS[BYTES_READ + 1], CONTENTS[BYTES_READ + 2], CONTENTS[BYTES_READ + 3], CONTENTS[BYTES_READ + 4]);
-                *(int *)full_number = CONTENTS[BYTES_READ + 5];
+                unsigned char *addr = (unsigned char *)full_number;
+                *addr = CONTENTS[BYTES_READ + 5];
             }
             BYTES_READ++;
         }
