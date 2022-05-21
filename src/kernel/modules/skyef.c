@@ -3,6 +3,7 @@
                             THE COMPILER. DON'T WORRY, AS WE CAN STILL USE LIBRARIES LIKE THIS WHILE CREATING A KERNEL.             */
 #include "./process.h"
 #include "./io.h"
+#include "./../utils/memory.h"
 
 /*
  *  THE FULL DOCUMENTATION OF THE INSTRUCTIONS AND WHAT
@@ -54,8 +55,13 @@ process_exit_code_t execute_skyef(unsigned char CONTENTS[]/*, process_id_t *PROC
             {
                 BYTES_READ = BYTES_READ + 5;
                 uint32_t full_number = bytes_to_uint32_lil_endian(CONTENTS[BYTES_READ + 1], CONTENTS[BYTES_READ + 2], CONTENTS[BYTES_READ + 3], CONTENTS[BYTES_READ + 4]);
-                unsigned char *addr = (unsigned char *)full_number;
-                *addr = CONTENTS[BYTES_READ + 5];
+                out_memb(full_number, CONTENTS[BYTES_READ + 5]);
+            }
+            else if(CONTENTS[BYTES_READ] == 0x02)
+            {
+                BYTES_READ = BYTES_READ + 4;
+                uint32_t full_number = bytes_to_uint32_lil_endian(CONTENTS[BYTES_READ + 1], CONTENTS[BYTES_READ + 2], CONTENTS[BYTES_READ + 3], CONTENTS[BYTES_READ + 4]);
+                printn(in_memb(full_number));
             }
             BYTES_READ++;
         }
