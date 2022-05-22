@@ -10,3 +10,8 @@
  *      * SERIAL_TERMINAL ...... Use serial as a terminal
  */
 #define SERIAL_TERMINAL // IO_MODE
+
+/*
+ *  UNCOMMENT `#define DEBUG_MODE` IF YOU DON'T WANT TO RECIEVE DEBUG MESSAGES.
+ */
+#define DEBUG_MODE
