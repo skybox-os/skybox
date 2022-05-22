@@ -9,3 +9,6 @@ xorriso
 ```
 ## How to test it?
 I test it on [v86](https://copy.sh/v86).
+## Plans
+Once I finish and make this operating system complete, I will try to integrate a compiler and an assembler to it, and try to see if I can build SkyboxOS inside SkyboxOS.
+For now, I **really** need help with creating a function for running raw machine code in C.
