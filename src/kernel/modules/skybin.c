@@ -7,8 +7,6 @@
  */
 void RUN_MACHINE_CODE(unsigned char code[])
 {
-    /*
-     *  I REALLY NEED HELP WITH IMPLEMENTING THIS FUNCTION! IT IS
-     *  PARTIALLY VITAL TO THIS OPERATING SYSTEM.
-     */
+    void *buf;
+    int i = ((int (*) (void))buf)();
 }
